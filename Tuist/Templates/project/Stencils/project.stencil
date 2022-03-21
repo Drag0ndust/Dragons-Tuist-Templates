@@ -1,0 +1,61 @@
+import nameDescription
+import nameDescriptionHelpers
+
+let baseSettings = SettingsDictionary()
+    .automaticCodeSigning(devTeam: "{{ devTeam }}")
+    .bitcodeEnabled(false)
+
+let extendedPlist: [String: InfoPlist.Value] = [
+    "UIApplicationSceneManifest": ["UIApplicationSupportsMultipleScenes": true],
+    "UILaunchScreen": [],
+    "UISupportedInterfaceOrientations":
+        [
+            "UIInterfaceOrientationPortrait",
+        ],
+    "CFBundleDisplayName": "{{ name }}",
+    "CFBundleShortVersionString": "1.0.0",
+    "CFBundleVersion": "1",
+]
+
+let name = name(
+    name: "{{ name }}",
+    organizationName: "{{ organization }}",
+    options: name.Options.options(automaticSchemesOptions: .enabled(targetSchemesGrouping: .notGrouped, codeCoverageEnabled: true, testingOptions: .parallelizable),
+                                     developmentRegion: "en"),
+    settings: Settings.settings(base: baseSettings),
+    targets: [
+        Target(
+            name: "{{ name }}",
+            platform: .iOS,
+            product: .app,
+            bundleId: "{{ bundlePrefix }}.{{ name }}",
+            deploymentTarget: .iOS(targetVersion: "15.2", devices: .iphone),
+            infoPlist: InfoPlist.extendingDefault(with: extendedPlist),
+            sources: ["Targets/{{ name }}/Sources/**"],
+            resources: ["Targets/{{ name }}/Resources/**"],
+            dependencies: []
+        ),
+        Target(
+            name: "{{ name }}Tests",
+            platform: .iOS,
+            product: .unitTests,
+            bundleId: "{{ bundlePrefix }}.{{ name }}Tests",
+            infoPlist: .default,
+            sources: ["Targets/{{ name }}/Tests/**"],
+            dependencies: [
+                .target(name: "{{ name }}"),
+            ]
+        ),
+        Target(
+            name: "Screenshots",
+            platform: .iOS,
+            product: .uiTests,
+            bundleId: "{{ bundlePrefix }}.{{ name }}UITests",
+            infoPlist: .default,
+            sources: ["Targets/{{ name }}/UITests/**"],
+            dependencies: [
+                .target(name: "{{ name }}"),
+            ]
+        ),
+    ]
+)
