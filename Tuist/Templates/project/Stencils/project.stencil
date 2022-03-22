@@ -1,5 +1,4 @@
-import nameDescription
-import nameDescriptionHelpers
+import ProjectDescription
 
 let baseSettings = SettingsDictionary()
     .automaticCodeSigning(devTeam: "{{ devTeam }}")
@@ -17,10 +16,10 @@ let extendedPlist: [String: InfoPlist.Value] = [
     "CFBundleVersion": "1",
 ]
 
-let name = name(
+let name = Project(
     name: "{{ name }}",
     organizationName: "{{ organization }}",
-    options: name.Options.options(automaticSchemesOptions: .enabled(targetSchemesGrouping: .notGrouped, codeCoverageEnabled: true, testingOptions: .parallelizable),
+    options: Project.Options.options(automaticSchemesOptions: .enabled(targetSchemesGrouping: .notGrouped, codeCoverageEnabled: true, testingOptions: .parallelizable),
                                      developmentRegion: "en"),
     settings: Settings.settings(base: baseSettings),
     targets: [
