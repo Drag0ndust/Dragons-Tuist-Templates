@@ -52,12 +52,12 @@ let template = Template(
 
         //Tuist Files
         .file(
-            path: "Tuist/Config.swift",
+            path: projectPath + "/Tuist/Config.swift",
             templatePath: templatePath("Config.stencil")
         ),
         .file(
-            path: "Tuist/Dependencies.swift",
-            templatePath: templatePath("dependencies.stencil")
+            path: projectPath + "/Tuist/Dependencies.swift",
+            templatePath: templatePath("Dependencies.stencil")
         ),
 
         // .directory(path: "Targets/{{ project }}/Sources", sourcePath: "Stencils/Sources"),
