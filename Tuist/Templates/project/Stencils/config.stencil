@@ -1,0 +1,7 @@
+import ProjectDescription
+
+let config = Config(
+    cache: .cache(profiles: [
+        .profile(name: "iPhone", configuration: "Debug", device: "iPhone 11 Pro"),
+    ])
+)
