@@ -56,5 +56,6 @@ let name = Project(
                 .target(name: "{{ name }}"),
             ]
         ),
-    ]
+    ],
+    fileHeaderTemplate: .init(stringLiteral: "// -----------------------------------------------------------------\n// Copyright (c) {year} - {{ copyright }}. Alle Rechte vorbehalten.\n// -----------------------------------------------------------------\n// Diese Datei ist urheberrechtlich geschützt. Die Vervielfältigung,\n// Bearbeitung, Verbreitung und jede Art der Verwertung bedürfen der\n// schriftlichen Zustimmung.\n// -----------------------------------------------------------------")
 )

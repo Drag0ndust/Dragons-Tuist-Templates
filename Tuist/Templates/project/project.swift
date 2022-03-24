@@ -9,6 +9,7 @@ import ProjectDescription
 
 let projectNameAttribute: Template.Attribute = .required("name")
 let devTeamAttribute: Template.Attribute = .required("devTeam")
+let copyrightAttribute: Template.Attribute = .optional("copyright", default: "")
 let bundleIdentifierPrefixAttribute: Template.Attribute = .required("bundlePrefix")
 // let platformAttribute: Template.Attribute = .optional("platform", default: "iOS")
 
@@ -23,6 +24,7 @@ let template = Template(
     attributes: [
         projectNameAttribute,
         devTeamAttribute,
+        copyrightAttribute,
         bundleIdentifierPrefixAttribute,
         // platformAttribute,
         .optional("organization", default: ""),
