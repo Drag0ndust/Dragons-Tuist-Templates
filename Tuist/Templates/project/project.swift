@@ -9,9 +9,7 @@ import ProjectDescription
 
 let projectNameAttribute: Template.Attribute = .required("name")
 let devTeamAttribute: Template.Attribute = .required("devTeam")
-let copyrightAttribute: Template.Attribute = .optional("copyright", default: "")
 let bundleIdentifierPrefixAttribute: Template.Attribute = .required("bundlePrefix")
-// let platformAttribute: Template.Attribute = .optional("platform", default: "iOS")
 
 let appPath = "Targets/\(projectNameAttribute)"
 let projectPath = "."
@@ -24,9 +22,8 @@ let template = Template(
     attributes: [
         projectNameAttribute,
         devTeamAttribute,
-        copyrightAttribute,
         bundleIdentifierPrefixAttribute,
-        // platformAttribute,
+        .optional("copyright", default: ""),
         .optional("organization", default: ""),
     ],
     items: [
@@ -36,6 +33,18 @@ let template = Template(
         .file(
             path: ".gitignore",
             templatePath: templatePath("gitignore.stencil")
+        ),
+        .file(
+            path: ".swiftformat",
+            templatePath: templatePath("swiftformat.stencil")
+        ),
+        .file(
+            path: ".tuist-version",
+            templatePath: templatePath("tuistversion.stencil")
+        ),
+        .file(
+            path: "Gemfile",
+            templatePath: templatePath("Gemfile.stencil")
         ),
 
         //App Files
@@ -73,10 +82,5 @@ let template = Template(
             path: projectPath + "/Tuist/Dependencies.swift",
             templatePath: templatePath("Dependencies.stencil")
         ),
-
-        // .directory(path: "Targets/{{ project }}/Sources", sourcePath: "Stencils/Sources"),
-        // .directory(path: "Targets/{{ project }}/Resources", sourcePath: "Stencils/Resources"),
-        // .directory(path: "Targets/{{ project }}/Tests", sourcePath: "Stencils/Tests"),
-        // .directory(path: "Targets/{{ project }}/UITests", sourcePath: "Stencils/UITests"),
     ]
 )
