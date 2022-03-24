@@ -12,9 +12,14 @@ let devTeamAttribute: Template.Attribute = .required("devTeam")
 let bundleIdentifierPrefixAttribute: Template.Attribute = .required("bundlePrefix")
 
 let appPath = "Targets/\(projectNameAttribute)"
-let projectPath = "."
+let projectPath = "./"
+
 func templatePath(_ path: String) -> Path {
     "Stencils/\(path)"
+}
+
+func globalTemplatePath(_ path: String) -> Path {
+    "../Stencils/\(path)"
 }
 
 let template = Template(
@@ -27,12 +32,12 @@ let template = Template(
         .optional("organization", default: ""),
     ],
     items: [
-        .file(path: projectPath + "/Project.swift", 
+        .file(path: projectPath + "Project.swift", 
               templatePath: templatePath("project.stencil")
         ),
         .file(
-            path: ".gitignore",
-            templatePath: templatePath("gitignore.stencil")
+            path: projectPath + ".gitignore",
+            templatePath: globalTemplatePath("gitignore.stencil")
         ),
         .file(
             path: ".swiftformat",
@@ -66,20 +71,20 @@ let template = Template(
             ),
         .file(
             path: appPath + "/Tests/\(projectNameAttribute)Tests.swift",
-            templatePath: "../Stencils/AppTests.stencil"
+            templatePath: globalTemplatePath("AppTests.stencil")
         ),
         .file(
             path: appPath + "/UITests/\(projectNameAttribute)UITests.swift",
-            templatePath: "../Stencils/UITests.stencil"
+            templatePath: globalTemplatePath("UITests.stencil") 
         ),
 
         //Tuist Files
         .file(
-            path: projectPath + "/Tuist/Config.swift",
+            path: projectPath + "Tuist/Config.swift",
             templatePath: templatePath("Config.stencil")
         ),
         .file(
-            path: projectPath + "/Tuist/Dependencies.swift",
+            path: projectPath + "Tuist/Dependencies.swift",
             templatePath: templatePath("Dependencies.stencil")
         ),
     ]
