@@ -1,4 +1,12 @@
+import Foundation
 import ProjectDescription
+
+var dateFormatter: DateFormatter {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "YYYY"
+    return formatter
+}
+let currentYear = dateFormatter.string(from: .now)
 
 let baseSettings = SettingsDictionary()
     .automaticCodeSigning(devTeam: "{{ devTeam }}")
@@ -57,5 +65,5 @@ let name = Project(
             ]
         ),
     ],
-    fileHeaderTemplate: .init(stringLiteral: "// -----------------------------------------------------------------\n// Copyright (c) {year} - {{ copyright }}. Alle Rechte vorbehalten.\n// -----------------------------------------------------------------\n// Diese Datei ist urheberrechtlich geschützt. Die Vervielfältigung,\n// Bearbeitung, Verbreitung und jede Art der Verwertung bedürfen der\n// schriftlichen Zustimmung.\n// -----------------------------------------------------------------")
+    fileHeaderTemplate: .init(stringLiteral: "// -----------------------------------------------------------------\n// Copyright (c) \(currentYear) - {{ copyright }}. Alle Rechte vorbehalten.\n// -----------------------------------------------------------------\n// Diese Datei ist urheberrechtlich geschützt. Die Vervielfältigung,\n// Bearbeitung, Verbreitung und jede Art der Verwertung bedürfen der\n// schriftlichen Zustimmung.\n// -----------------------------------------------------------------")
 )

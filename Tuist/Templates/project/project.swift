@@ -43,6 +43,10 @@ let template = Template(
             path: appPath + "/Sources/\(projectNameAttribute)App.swift",
             templatePath: templatePath("app.stencil")
         ),
+        .file(
+            path: appPath + "/Sources/ContentView.swift",
+            templatePath: templatePath("ContentView.stencil")
+        ),
         .directory(
                 path: appPath + "/Resources",
                 sourcePath: "ios/Assets.xcassets"
@@ -51,6 +55,14 @@ let template = Template(
                 path: appPath + "/Resources",
                 sourcePath: "Preview Content"
             ),
+        .file(
+            path: appPath + "/Tests/\(projectNameAttribute)Tests.swift",
+            templatePath: "../Stencils/AppTests.stencil"
+        ),
+        .file(
+            path: appPath + "/UITests/\(projectNameAttribute)UITests.swift",
+            templatePath: "../Stencils/UITests.stencil"
+        ),
 
         //Tuist Files
         .file(
