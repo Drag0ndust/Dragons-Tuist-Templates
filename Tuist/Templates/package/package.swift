@@ -35,11 +35,11 @@ let template = Template(
             templatePath: globalTemplatePath("gitignore.stencil")
         ),
         .file(
-            path: packagesPath("Sources/\(packageNameAttribute).swift"),
+            path: packagesPath("Sources/\(packageNameAttribute)/\(packageNameAttribute).swift"),
             templatePath: templatePath("swiftFile.stencil")
         ),
         .file(
-            path: packagesPath("Tests/\(packageNameAttribute)Tests.swift"),
+            path: packagesPath("Tests/\(packageNameAttribute)Tests/\(packageNameAttribute)Tests.swift"),
             templatePath: globalTemplatePath("AppTests.stencil")
         )
     ]
