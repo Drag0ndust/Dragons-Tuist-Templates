@@ -32,9 +32,8 @@ let template = Template(
         .optional("organization", default: ""),
     ],
     items: [
-        .file(path: projectPath + "Project.swift", 
-              templatePath: templatePath("project.stencil")
-        ),
+        .file(path: projectPath + "Project.swift",
+              templatePath: templatePath("project.stencil")),
         .file(
             path: projectPath + ".gitignore",
             templatePath: globalTemplatePath("gitignore.stencil")
@@ -52,7 +51,7 @@ let template = Template(
             templatePath: templatePath("Gemfile.stencil")
         ),
 
-        //App Files
+        // App Files
         .file(
             path: appPath + "/Sources/\(projectNameAttribute)App.swift",
             templatePath: templatePath("app.stencil")
@@ -62,23 +61,23 @@ let template = Template(
             templatePath: templatePath("ContentView.stencil")
         ),
         .directory(
-                path: appPath + "/Resources",
-                sourcePath: "ios/Assets.xcassets"
-            ),
+            path: appPath + "/Resources",
+            sourcePath: "ios/Assets.xcassets"
+        ),
         .directory(
-                path: appPath + "/Resources",
-                sourcePath: "Preview Content"
-            ),
+            path: appPath + "/Resources",
+            sourcePath: "Preview Content"
+        ),
         .file(
             path: appPath + "/Tests/\(projectNameAttribute)Tests.swift",
             templatePath: globalTemplatePath("AppTests.stencil")
         ),
         .file(
             path: appPath + "/UITests/\(projectNameAttribute)UITests.swift",
-            templatePath: globalTemplatePath("UITests.stencil") 
+            templatePath: globalTemplatePath("UITests.stencil")
         ),
 
-        //Tuist Files
+        // Tuist Files
         .file(
             path: projectPath + "Tuist/Config.swift",
             templatePath: templatePath("Config.stencil")

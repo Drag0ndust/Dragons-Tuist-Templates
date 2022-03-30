@@ -27,9 +27,8 @@ let template = Template(
         packageNameAttribute,
     ],
     items: [
-        .file(path: packagesPath("Package.swift"), 
-              templatePath: templatePath("package.stencil")
-        ),
+        .file(path: packagesPath("Package.swift"),
+              templatePath: templatePath("package.stencil")),
         .file(
             path: packagesPath(".gitignore"),
             templatePath: globalTemplatePath("gitignore.stencil")
@@ -41,6 +40,6 @@ let template = Template(
         .file(
             path: packagesPath("Tests/\(packageNameAttribute)Tests/\(packageNameAttribute)Tests.swift"),
             templatePath: globalTemplatePath("AppTests.stencil")
-        )
+        ),
     ]
 )
